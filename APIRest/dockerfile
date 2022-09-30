@@ -1,0 +1,13 @@
+#tomo la ultima versión de python
+FROM python:latest
+#añado el directorio del proyecto
+ADD . /code
+#añado directorio de trabajo
+WORKDIR /code
+#como la imagen utilizada es python, no va a ser necesario apt update ni apt install
+#instalo los modulos de python necesarios
+RUN pip install -r requirements.txt
+#Copio el script dentro de la carpeta code
+COPY frecuencias.py ./code
+# indico que al arranque del contenedor se incie python3 y el script
+CMD [ "python3", "frecuencias.py" ]
